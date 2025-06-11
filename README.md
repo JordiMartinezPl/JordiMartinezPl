@@ -8,19 +8,19 @@ Trabajo de forma habitual en equipos multidisciplinares, aplicando metodologías
 
 ##  Proyectos Destacados
 
-###  [Sticker Collection API](https://github.com/tuusuario/sticker-collection-api)
+###  [Sticker Collection API](https://github.com/JordiMartinezPl/Internet-App-Aplication-Project)
 Desarrollo backend completo con Java y Spring Boot:
 - API REST con autenticación JWT y gestión de roles.
 - Control de concurrencia en base de datos y consultas SQL optimizadas.
 - Arquitectura basada en componentes y DTOs.
 
-###  [Videojuego en Unity (Proyecto en grupo)](https://github.com/tuusuario/nombre-del-juego)
+###  [Videojuego en Unity (Proyecto en grupo)](https://github.com/JordiMartinezPl/State-Machine-unity)
 Colaboración en equipo como responsable de la lógica de juego:
 - Máquina de estados para IA de enemigos.
 - Detección de jugador y animación basada en estados.
 - Sistema de UI y colisiones dinámicas.
 
-### [Árboles Binarios en Java](https://github.com/tuusuario/arboles-binarios)
+### [Árboles Binarios en Java](https://github.com/JordiMartinezPl/Binary-tree-Buffer-Practice)
 - Implementación de inserción, eliminación y búsqueda.
 - Gestión de memoria mediante buffers.
 - Aplicación estructurada en Java con enfoque académico.
@@ -95,7 +95,7 @@ Colaboración en equipo como responsable de la lógica de juego:
 
 ##  Contacto Profesional
 
-- [LinkedIn](https://www.linkedin.com/in/tu-perfil)  
+- [LinkedIn]([https://www.linkedin.com/in/tu-perfil](https://www.linkedin.com/in/jordi-mart%C3%ADnez-planas-631b182a9/))  
 - Email: jordimartinezplanas21@gmail.com
 
 ---
