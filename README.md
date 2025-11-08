@@ -1,4 +1,4 @@
-# 👨‍💻 Jordi — Developer 
+# Jordi — Developer 
 
 Soy estudiante del Doble Grado en Ingeniería Informática de Gestión y Sistemas de Información & Diseño y Producción de Videojuegos en TecnoCampus (UPF). Mi perfil combina una sólida base en desarrollo backend, arquitectura de software y bases de datos, con experiencia práctica en el desarrollo de videojuegos interactivos utilizando Unity y C#.
 
