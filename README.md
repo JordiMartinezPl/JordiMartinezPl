@@ -1,6 +1,6 @@
 <div align="center">
 
-[![typing](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1200&color=2ECC71&center=true&vCenter=true&width=560&lines=Backend-leaning+developer;Java%2C+Python%2C+C%23;CS+%2B+Video+Games+%40+TecnoCampus;Digging+under+the+hood)](https://github.com/JordiMartinezPl)
+[![typing](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1200&color=2ECC71&center=true&vCenter=true&width=560&lines=Backend-leaning+developer;Java%2C+Python%2C+C%23;Software+Engineering+%2B+Video+Games;Digging+under+the+hood)](https://github.com/JordiMartinezPl)
 
 </div>
 
@@ -8,16 +8,17 @@
 
 ```console
 jordi@github:~$ whoami
-> Jordi Martínez Planas — Software developer
+> Jordi Martínez Planas — Software Engineer
 
 jordi@github:~$ cat about.txt
-Double degree in Computer Engineering + Video Games @ TecnoCampus (UPF).
+Double degree in Software Engineering + Video Games @ TecnoCampus (UPF).
 Backend-leaning. I like understanding how things work under the hood.
 ```
 
 ## `$ ls ~/skills`
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=openjdk&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-239120?style=flat-square&logo=csharp&logoColor=white)
 &nbsp;
@@ -30,18 +31,18 @@ Backend-leaning. I like understanding how things work under the hood.
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
 
-<sub>Currently poking at LLM APIs (OpenRouter · Bedrock · Azure) at a simple level, and using AI to level up how I code.</sub>
-
 ---
 
-## `$ ./cmdle` — a little game I built
+## `$ ./invaders` — my commits under attack
 
 <div align="center">
 
-**A tiny Wordle where the answer is always a real 5-letter shell command.**
-Type, get instant feedback, 6 tries, a fresh command every day.
+<sub>The green squares are my GitHub contributions. A ship shoots them down — regenerated daily by a GitHub Action.</sub>
 
-[![Play CMDLE](https://img.shields.io/badge/PLAY%20CMDLE-238636?style=for-the-badge&logo=gnometerminal&logoColor=white)](https://jordimartinezpl.github.io/JordiMartinezPl/)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/JordiMartinezPl/JordiMartinezPl/output/commit-invaders-dark.svg">
+  <img alt="My contribution graph as a Space Invaders game" src="https://raw.githubusercontent.com/JordiMartinezPl/JordiMartinezPl/output/commit-invaders.svg" width="100%">
+</picture>
 
 </div>
 
