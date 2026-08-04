@@ -1,0 +1,56 @@
+name: CMDLE
+
+on:
+  issues:
+    types: [opened]
+
+concurrency:
+  group: cmdle-state
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  play:
+    if: startsWith(github.event.issue.title, 'CMDLE')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Score the guess
+        working-directory: game
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: python engine.py
+
+      - name: Reply on the issue and close it
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUM: ${{ github.event.issue.number }}
+        run: |
+          gh issue comment "$NUM" --body-file game/_comment.md
+          gh issue close   "$NUM" --reason completed
+
+      - name: Commit updated game state
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f game/_comment.md
+          git add game/saves game/leaderboard.json README.md
+          if git diff --cached --quiet; then
+            echo "no state changes to commit"
+            exit 0
+          fi
+          git commit -m "cmdle: ${{ github.event.issue.user.login }} played (#${{ github.event.issue.number }})"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && git push && break
+            echo "retry $i"; sleep 3
+          done
