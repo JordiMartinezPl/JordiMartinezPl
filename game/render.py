@@ -38,18 +38,18 @@ def keyboard(guesses: list[str], answer: str) -> str:
     absent = sorted(c for c, m in state.items() if m == MISS)
     parts = []
     if correct:
-        parts.append(f"🟩 `{' '.join(correct)}`")
+        parts.append(f"correct `{' '.join(correct)}`")
     if present:
-        parts.append(f"🟨 `{' '.join(present)}`")
+        parts.append(f"present `{' '.join(present)}`")
     if absent:
-        parts.append(f"⬛ ~~`{' '.join(absent)}`~~")
+        parts.append(f"absent ~~`{' '.join(absent)}`~~")
     return "  ·  ".join(parts)
 
 
-def guess_link(repo: str, label: str = "🔤 Type my guess") -> str:
+def guess_link(repo: str, label: str = "Type my guess") -> str:
     title = "CMDLE XXXXX"
     body = (
-        "👆 Replace the **XXXXX** in the title above with your 5-letter guess "
+        "Replace the **XXXXX** in the title above with your 5-letter guess "
         "and hit **Submit new issue**.\n\n"
         "You don't need to write anything down here."
     )
@@ -63,9 +63,9 @@ def issue_comment(state: dict, repo: str, *, invalid: str | None = None) -> str:
     status = state["status"]
     left = MAX_GUESSES - len(guesses)
 
-    out = ["### 🟩 Guess the terminal command", ""]
+    out = ["### Guess the terminal command", ""]
     if invalid:
-        out += [f"> ⚠️ {invalid}", ""]
+        out += [f"> {invalid}", ""]
     out.append(board(guesses, answer))
     kb = keyboard(guesses, answer)
     if kb:
@@ -75,13 +75,13 @@ def issue_comment(state: dict, repo: str, *, invalid: str | None = None) -> str:
     if status == "won":
         n = len(guesses)
         out += [
-            f"🎉 **Solved in {n}/{MAX_GUESSES}!** The command was `{answer.lower()}`.",
+            f"**Solved in {n}/{MAX_GUESSES}!** The command was `{answer.lower()}`.",
             "",
-            "Come back tomorrow for the next one — and share your result 👀",
+            "Come back tomorrow for the next one — and share your result.",
         ]
     elif status == "lost":
         out += [
-            f"💀 **Out of tries.** The command was `{answer.lower()}`.",
+            f"**Out of tries.** The command was `{answer.lower()}`.",
             "",
             "A fresh command drops every day. Good luck!",
         ]
@@ -117,15 +117,14 @@ def readme_leaderboard(leaderboard: dict) -> str:
     alltime = leaderboard.get("alltime", {})
 
     out = []
-    out.append("**🏆 Today's solvers**")
+    out.append("**Today's solvers**")
     out.append("")
     if today:
         ranked = sorted(today, key=lambda r: r["guesses"])
         out.append("| # | player | guesses |")
         out.append("|---|--------|:-------:|")
         for i, r in enumerate(ranked[:10], 1):
-            medal = {1: "🥇", 2: "🥈", 3: "🥉"}.get(i, f"{i}")
-            out.append(f"| {medal} | [@{r['user']}](https://github.com/{r['user']}) | {r['guesses']}/6 |")
+            out.append(f"| {i} | [@{r['user']}](https://github.com/{r['user']}) | {r['guesses']}/6 |")
     else:
         out.append("_Nobody has cracked today's command yet. Be the first?_")
 
@@ -135,10 +134,10 @@ def readme_leaderboard(leaderboard: dict) -> str:
         reverse=True,
     )
     if streaks:
-        out += ["", "**🔥 Longest streaks**", ""]
+        out += ["", "**Longest streaks**", ""]
         out.append("| player | streak | wins |")
         out.append("|--------|:------:|:----:|")
         for u, s in streaks[:5]:
-            out.append(f"| [@{u}](https://github.com/{u}) | {s['streak']} 🔥 | {s.get('won', 0)} |")
+            out.append(f"| [@{u}](https://github.com/{u}) | {s['streak']} | {s.get('won', 0)} |")
 
     return "\n".join(out)

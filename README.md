@@ -41,7 +41,7 @@ building things, learning faster, shipping more than last year.
 
 ---
 
-## `$ ./cmdle` — guess the daily terminal command 🟩
+## `$ ./cmdle` — guess the daily terminal command
 
 <div align="center">
 
@@ -57,18 +57,18 @@ One puzzle a day, 6 guesses, playable **right here on my profile.**
   ·  ·  ·  ·  ·   ⬜⬜⬜⬜⬜
 ```
 
-[![Play CMDLE](https://img.shields.io/badge/▶%20PLAY%20TODAY'S%20COMMAND-238636?style=for-the-badge&logo=gnometerminal&logoColor=white)](https://github.com/JordiMartinezPl/JordiMartinezPl/issues/new?title=CMDLE+XXXXX&body=%F0%9F%91%86+Replace+the+%2A%2AXXXXX%2A%2A+in+the+title+above+with+your+5-letter+guess+and+hit+%2A%2ASubmit+new+issue%2A%2A.%0A%0AYou+don%27t+need+to+write+anything+down+here.&labels=cmdle)
+[![Play CMDLE](https://img.shields.io/badge/PLAY%20TODAY'S%20COMMAND-238636?style=for-the-badge&logo=gnometerminal&logoColor=white)](https://github.com/JordiMartinezPl/JordiMartinezPl/issues/new?title=CMDLE+XXXXX&body=Replace+the+%2A%2AXXXXX%2A%2A+in+the+title+above+with+your+5-letter+guess+and+hit+%2A%2ASubmit+new+issue%2A%2A.%0A%0AYou+don%27t+need+to+write+anything+down+here.&labels=cmdle)
 
 </div>
 
 > **How it works** — Clicking **Play** opens a pre-filled issue. Change the
 > `XXXXX` in the title to your 5-letter guess and submit it. A GitHub Action
 > (Python) scores it, replies with your board, and closes the issue. Your
-> progress is saved per player and resets every day. 🟩 right spot · 🟨 wrong
-> spot · ⬛ not in the command.
+> progress is saved per player and resets every day. Green = right spot,
+> yellow = wrong spot, grey = not in the command.
 
 <!-- LEADERBOARD:START -->
-**🏆 Today's solvers**
+**Today's solvers**
 
 _Nobody has cracked today's command yet. Be the first?_
 <!-- LEADERBOARD:END -->
@@ -92,9 +92,9 @@ building backend & infra at work — a few side projects below.
 
 | project | what it is |
 |---------|------------|
-| 🩺 **[health-system-tool](https://github.com/JordiMartinezPl/health-system-tool)** | Bash + Docker system-monitoring & security-auditing tool for Linux — real-time diagnostics, flicker-free atomic rendering, forensic logging under load and SSH session tracking. |
-| 📦 **[Order Management System](https://github.com/JordiMartinezPl/Microservices-Architecture-Order-Management-System)** | Microservices in **Java + Docker** with **SAGA** orchestration across customers / products / orders / delivery — compensating transactions and fault tolerance. |
-| 🏹 **[Eternal Agony](https://zad-826.itch.io/eternal-agony)** | Medieval grimdark FPS — fight hordes of undead with a soul-charged bow and soul-economy resource management. Made with a game team. |
+| **[health-system-tool](https://github.com/JordiMartinezPl/health-system-tool)** | Bash + Docker system-monitoring & security-auditing tool for Linux — real-time diagnostics, flicker-free atomic rendering, forensic logging under load and SSH session tracking. |
+| **[Order Management System](https://github.com/JordiMartinezPl/Microservices-Architecture-Order-Management-System)** | Microservices in **Java + Docker** with **SAGA** orchestration across customers / products / orders / delivery — compensating transactions and fault tolerance. |
+| **[Eternal Agony](https://zad-826.itch.io/eternal-agony)** | Medieval grimdark FPS — fight hordes of undead with a soul-charged bow and soul-economy resource management. Made with a game team. |
 
 ## `$ cat ~/stats`
 
@@ -107,7 +107,7 @@ building backend & infra at work — a few side projects below.
 
 ## `$ cat ~/contact.txt`
 
-- 💼 **LinkedIn:** [Jordi Martínez Planas](https://www.linkedin.com/in/jordi-mart%C3%ADnez-planas-631b182a9/)
-- 📫 **Email:** jordimartinezplanas21@gmail.com
+- **LinkedIn:** [Jordi Martínez Planas](https://www.linkedin.com/in/jordi-mart%C3%ADnez-planas-631b182a9/)
+- **Email:** jordimartinezplanas21@gmail.com
 
 <div align="center"><sub><code>jordi@github:~$ logout</code></sub></div>
