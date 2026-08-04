@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Commit Invaders — playable</title>
+<style>
+  :root {
+    --bg: #05070a; --fg: #2ecc71; --dim: #1c6b3f; --muted: #6b7280;
+    --mono: "SFMono-Regular","Fira Code","JetBrains Mono",Consolas,Menlo,monospace;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: radial-gradient(120% 90% at 50% -10%, #0c1620 0%, var(--bg) 60%), var(--bg);
+    color: var(--fg); font-family: var(--mono);
+    display: flex; flex-direction: column; align-items: center;
+    min-height: 100%; padding: 12px; gap: 10px; user-select: none;
+  }
+  header { text-align: center; }
+  .prompt { color: var(--muted); font-size: 12px; }
+  h1 { margin: 2px 0 0; font-size: 22px; letter-spacing: 5px; text-shadow: 0 0 12px rgba(46,204,113,.4); }
+  .hud { width: 100%; max-width: 480px; display: flex; justify-content: space-between; font-size: 13px; }
+  .hud b { color: #e6edf3; }
+  .stage { position: relative; width: 100%; max-width: 480px; }
+  canvas {
+    width: 100%; height: auto; display: block;
+    border: 1px solid var(--dim); border-radius: 8px; background: #04060a;
+    box-shadow: 0 0 40px rgba(46,204,113,.08) inset;
+    touch-action: none;
+  }
+  .overlay {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px; text-align: center;
+    background: rgba(4,6,10,.82); border-radius: 8px; padding: 20px;
+  }
+  .overlay.hidden { display: none; }
+  .overlay h2 { margin: 0; font-size: 22px; letter-spacing: 2px; }
+  .overlay p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+  .btn {
+    font-family: var(--mono); background: #238636; border: 1px solid #2ea043;
+    color: #fff; border-radius: 6px; padding: 10px 20px; font-size: 15px;
+    font-weight: 700; cursor: pointer; letter-spacing: 1px;
+  }
+  .btn:active { transform: translateY(1px); }
+  .controls { width: 100%; max-width: 480px; display: flex; gap: 8px; }
+  .controls .move { display: flex; gap: 8px; flex: 1; }
+  .ctl {
+    font-family: var(--mono); flex: 1; height: 52px;
+    background: #0b0f14; border: 1px solid var(--dim); color: var(--fg);
+    border-radius: 8px; font-size: 20px; cursor: pointer;
+  }
+  .ctl.fire { flex: 1.2; color: #fff; border-color: #2ea043; }
+  .ctl:active { background: rgba(46,204,113,.12); }
+  footer { color: var(--muted); font-size: 11px; }
+  footer a { color: var(--dim); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  @media (hover: hover) and (pointer: fine) { .controls { display: none; } }
+</style>
+</head>
+<body>
+  <header>
+    <div class="prompt">jordi@github:~$ ./commit-invaders</div>
+    <h1>COMMIT INVADERS</h1>
+  </header>
+
+  <div class="hud">
+    <div>SCORE <b id="score">0</b></div>
+    <div>WAVE <b id="wave">1</b></div>
+    <div>LIVES <b id="lives">♥♥♥</b></div>
+    <div>BEST <b id="best">0</b></div>
+  </div>
+
+  <div class="stage">
+    <canvas id="game" width="480" height="560" aria-label="game"></canvas>
+    <div class="overlay" id="overlay">
+      <h2 id="ov-title">COMMIT INVADERS</h2>
+      <p id="ov-text">Move with <b>← →</b> (or A / D)&nbsp;·&nbsp;shoot with <b>Space</b>.<br>On mobile use the buttons below.<br>Blast the contribution squares before they land.</p>
+      <button class="btn" id="startBtn">▶ START</button>
+    </div>
+  </div>
+
+  <div class="controls" aria-hidden="true">
+    <div class="move">
+      <button class="ctl" id="btnLeft">◀</button>
+      <button class="ctl" id="btnRight">▶</button>
+    </div>
+    <button class="ctl fire" id="btnFire">● FIRE</button>
+  </div>
+
+  <footer>a playable take on the profile animation &middot; <a href="https://github.com/JordiMartinezPl">back to profile</a></footer>
+
+<script>
+(() => {
+  "use strict";
+  const canvas = document.getElementById("game");
+  const ctx = canvas.getContext("2d");
+  const W = canvas.width, H = canvas.height;
+
+  const el = id => document.getElementById(id);
+  const scoreEl = el("score"), waveEl = el("wave"), livesEl = el("lives"), bestEl = el("best");
+  const overlay = el("overlay"), ovTitle = el("ov-title"), ovText = el("ov-text"), startBtn = el("startBtn");
+
+  const GREENS = ["#0e4429", "#006d32", "#26a641", "#39d353"];
+  const BEST_KEY = "commit-invaders.best";
+
+  let best = 0;
+  try { best = parseInt(localStorage.getItem(BEST_KEY) || "0", 10) || 0; } catch {}
+  bestEl.textContent = best;
+
+  const state = {
+    mode: "start",           // start | playing | over
+    score: 0, wave: 1, lives: 3,
+    ship: { x: W/2, y: H - 34, w: 34, h: 16, speed: 320 },
+    bullets: [], bombs: [], invaders: [],
+    dir: 1, stepDown: 0, fireCd: 0, bombTimer: 1.2, baseSpeed: 26,
+  };
+
+  const keys = { left: false, right: false, fire: false };
+
+  // ---------- input ----------
+  addEventListener("keydown", e => {
+    if (["ArrowLeft","ArrowRight","ArrowUp","ArrowDown"," "].includes(e.key)) e.preventDefault();
+    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") keys.left = true;
+    if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") keys.right = true;
+    if (e.key === " ") { keys.fire = true; if (state.mode !== "playing") start(); }
+    if ((e.key === "Enter") && state.mode !== "playing") start();
+  });
+  addEventListener("keyup", e => {
+    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") keys.left = false;
+    if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") keys.right = false;
+    if (e.key === " ") keys.fire = false;
+  });
+  const hold = (id, key) => {
+    const b = el(id);
+    const on = e => { e.preventDefault(); keys[key] = true; };
+    const off = e => { e.preventDefault(); keys[key] = false; };
+    b.addEventListener("touchstart", on, { passive: false });
+    b.addEventListener("touchend", off);
+    b.addEventListener("touchcancel", off);
+    b.addEventListener("mousedown", on);
+    b.addEventListener("mouseup", off);
+    b.addEventListener("mouseleave", off);
+  };
+  hold("btnLeft", "left"); hold("btnRight", "right"); hold("btnFire", "fire");
+  startBtn.addEventListener("click", start);
+
+  // ---------- setup ----------
+  function buildWave() {
+    const cols = 8, rows = Math.min(3 + Math.floor(state.wave / 2), 5);
+    const cellW = 26, cellH = 22, gapX = 20, gapY = 16;
+    const gridW = cols * cellW + (cols - 1) * (gapX - cellW);
+    const startX = (W - (cols - 1) * gapX) / 2;
+    const inv = [];
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        inv.push({
+          x: startX + c * gapX, y: 60 + r * gapY,
+          w: 16, h: 16, alive: true,
+          color: GREENS[(rows - 1 - r) % GREENS.length],
+          points: (rows - r) * 10,
+        });
+      }
+    }
+    state.invaders = inv;
+    state.dir = 1; state.stepDown = 0;
+    state.baseSpeed = 24 + state.wave * 6;
+    state.bombTimer = Math.max(0.5, 1.4 - state.wave * 0.1);
+  }
+
+  function start() {
+    state.mode = "playing";
+    state.score = 0; state.wave = 1; state.lives = 3;
+    state.bullets = []; state.bombs = [];
+    state.ship.x = W / 2;
+    buildWave();
+    overlay.classList.add("hidden");
+    syncHud();
+  }
+
+  function syncHud() {
+    scoreEl.textContent = state.score;
+    waveEl.textContent = state.wave;
+    livesEl.textContent = "♥".repeat(state.lives) || "—";
+    bestEl.textContent = best;
+  }
+
+  function gameOver() {
+    state.mode = "over";
+    if (state.score > best) {
+      best = state.score;
+      try { localStorage.setItem(BEST_KEY, String(best)); } catch {}
+    }
+    ovTitle.textContent = "GAME OVER";
+    ovText.innerHTML = `Score <b>${state.score}</b> &middot; best <b>${best}</b><br>Reached wave ${state.wave}.`;
+    startBtn.textContent = "▶ PLAY AGAIN";
+    overlay.classList.remove("hidden");
+    syncHud();
+  }
+
+  // ---------- update ----------
+  function update(dt) {
+    if (state.mode !== "playing") return;
+    const s = state.ship;
+
+    if (keys.left) s.x -= s.speed * dt;
+    if (keys.right) s.x += s.speed * dt;
+    s.x = Math.max(s.w/2, Math.min(W - s.w/2, s.x));
+
+    state.fireCd -= dt;
+    if (keys.fire && state.fireCd <= 0) {
+      state.bullets.push({ x: s.x, y: s.y - 12, w: 3, h: 12, vy: -520 });
+      state.fireCd = 0.28;
+    }
+
+    for (const b of state.bullets) b.y += b.vy * dt;
+    state.bullets = state.bullets.filter(b => b.y + b.h > 0);
+
+    // invader block movement
+    const alive = state.invaders.filter(i => i.alive);
+    if (alive.length === 0) { state.wave++; buildWave(); syncHud(); return; }
+
+    let minX = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (const i of alive) { minX = Math.min(minX, i.x); maxX = Math.max(maxX, i.x + i.w); maxY = Math.max(maxY, i.y + i.h); }
+
+    const speed = state.baseSpeed * (1 + (1 - alive.length / state.invaders.length) * 1.4);
+    let stepDown = false;
+    if (state.dir > 0 && maxX + speed * dt > W - 8) { state.dir = -1; stepDown = true; }
+    else if (state.dir < 0 && minX - speed * dt < 8) { state.dir = 1; stepDown = true; }
+
+    for (const i of alive) {
+      i.x += state.dir * speed * dt;
+      if (stepDown) i.y += 14;
+    }
+    if (maxY + (stepDown ? 14 : 0) >= s.y - s.h) { gameOver(); return; }
+
+    // bombs
+    state.bombTimer -= dt;
+    if (state.bombTimer <= 0 && alive.length) {
+      const shooter = alive[Math.floor(Math.random() * alive.length)];
+      state.bombs.push({ x: shooter.x + shooter.w/2, y: shooter.y + shooter.h, w: 4, h: 10, vy: 180 + state.wave * 12 });
+      state.bombTimer = Math.max(0.4, 1.3 - state.wave * 0.08) * (0.6 + Math.random() * 0.8);
+    }
+    for (const b of state.bombs) b.y += b.vy * dt;
+    state.bombs = state.bombs.filter(b => b.y < H);
+
+    // bullet vs invaders
+    for (const bu of state.bullets) {
+      for (const i of alive) {
+        if (i.alive && bu.x < i.x + i.w && bu.x + bu.w > i.x && bu.y < i.y + i.h && bu.y + bu.h > i.y) {
+          i.alive = false; bu.y = -999;
+          state.score += i.points; syncHud();
+          break;
+        }
+      }
+    }
+    state.bullets = state.bullets.filter(b => b.y > -100);
+
+    // bombs vs ship
+    for (const b of state.bombs) {
+      if (b.x < s.x + s.w/2 && b.x + b.w > s.x - s.w/2 && b.y + b.h > s.y - s.h && b.y < s.y + s.h) {
+        b.y = H + 999;
+        state.lives--; syncHud();
+        if (state.lives <= 0) { gameOver(); return; }
+      }
+    }
+    state.bombs = state.bombs.filter(b => b.y < H);
+  }
+
+  // ---------- render ----------
+  function drawShip(s) {
+    ctx.fillStyle = "#39d353";
+    ctx.beginPath();
+    ctx.moveTo(s.x, s.y - s.h);
+    ctx.lineTo(s.x - s.w/2, s.y + s.h/2);
+    ctx.lineTo(s.x + s.w/2, s.y + s.h/2);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = "#2ecc71";
+    ctx.fillRect(s.x - 3, s.y - s.h - 5, 6, 6);
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    // faint grid
+    ctx.strokeStyle = "rgba(46,204,113,.05)";
+    for (let x = 0; x <= W; x += 26) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+
+    for (const i of state.invaders) {
+      if (!i.alive) continue;
+      ctx.fillStyle = i.color;
+      ctx.fillRect(i.x, i.y, i.w, i.h);
+      ctx.strokeStyle = "rgba(0,0,0,.35)";
+      ctx.strokeRect(i.x + .5, i.y + .5, i.w - 1, i.h - 1);
+    }
+    ctx.fillStyle = "#7ee787";
+    for (const b of state.bullets) ctx.fillRect(b.x - b.w/2, b.y, b.w, b.h);
+    ctx.fillStyle = "#ff7b72";
+    for (const b of state.bombs) ctx.fillRect(b.x - b.w/2, b.y, b.w, b.h);
+
+    if (state.mode !== "start") drawShip(state.ship);
+  }
+
+  // ---------- loop ----------
+  let last = performance.now();
+  function frame(now) {
+    let dt = (now - last) / 1000; last = now;
+    if (dt > 0.05) dt = 0.05;
+    update(dt);
+    render();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

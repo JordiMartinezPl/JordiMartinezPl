@@ -37,12 +37,14 @@ Backend-leaning. I like understanding how things work under the hood.
 
 <div align="center">
 
-<sub>The green squares are my GitHub contributions. A ship shoots them down — regenerated daily by a GitHub Action.</sub>
+<sub>My contribution graph getting invaded — auto-updated daily. Want to actually play it?</sub>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/JordiMartinezPl/JordiMartinezPl/output/commit-invaders-dark.svg">
   <img alt="My contribution graph as a Space Invaders game" src="https://raw.githubusercontent.com/JordiMartinezPl/JordiMartinezPl/output/commit-invaders.svg" width="100%">
 </picture>
+
+[![Play the game](https://img.shields.io/badge/PLAY%20IT%20YOURSELF-238636?style=for-the-badge&logo=gnometerminal&logoColor=white)](https://jordimartinezpl.github.io/JordiMartinezPl/)
 
 </div>
 
