@@ -85,8 +85,16 @@ jordi@github:~$ cat focus.txt
 > CLI tooling and developer experience
 
 jordi@github:~$ echo $STATUS
-currently building at work — public projects coming soon.
+building backend & infra at work — a few side projects below.
 ```
+
+## `$ ls ~/projects`
+
+| project | what it is |
+|---------|------------|
+| 🩺 **[health-system-tool](https://github.com/JordiMartinezPl/health-system-tool)** | Bash + Docker system-monitoring & security-auditing tool for Linux — real-time diagnostics, flicker-free atomic rendering, forensic logging under load and SSH session tracking. |
+| 📦 **[Order Management System](https://github.com/JordiMartinezPl/Microservices-Architecture-Order-Management-System)** | Microservices in **Java + Docker** with **SAGA** orchestration across customers / products / orders / delivery — compensating transactions and fault tolerance. |
+| 🏹 **[Eternal Agony](https://zad-826.itch.io/eternal-agony)** | Medieval grimdark FPS — fight hordes of undead with a soul-charged bow and soul-economy resource management. Made with a game team. |
 
 ## `$ cat ~/stats`
 
