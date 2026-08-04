@@ -1,12 +1,6 @@
 <div align="center">
 
-```
-     ┌─────────────────────────────────────────────┐
-     │  jordi@github ~ % ./launch                    │
-     └─────────────────────────────────────────────┘
-```
-
-[![typing](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1200&color=2ECC71&center=true&vCenter=true&width=560&lines=Backend+%26+DevOps+engineer;Systems+%26+security+enthusiast;CS+%2B+Video+Games+%40+TecnoCampus;Always+digging+under+the+hood)](https://github.com/JordiMartinezPl)
+[![typing](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1200&color=2ECC71&center=true&vCenter=true&width=560&lines=Backend-leaning+developer;Java%2C+Python%2C+C%23;CS+%2B+Video+Games+%40+TecnoCampus;Digging+under+the+hood)](https://github.com/JordiMartinezPl)
 
 </div>
 
@@ -14,30 +8,29 @@
 
 ```console
 jordi@github:~$ whoami
-> Jordi Martínez Planas — Software Engineer
+> Jordi Martínez Planas — Software developer
 
 jordi@github:~$ cat about.txt
 Double degree in Computer Engineering + Video Games @ TecnoCampus (UPF).
-I like knowing how things work under the hood — from processes and the OS
-up to the architecture of an API. Right now I'm going deep on Backend,
-DevOps and security.
-
-jordi@github:~$ uptime
-building things, learning faster, shipping more than last year.
+Backend-leaning. I like understanding how things work under the hood.
 ```
 
 ## `$ ls ~/skills`
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnubash&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
+![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=openjdk&logoColor=white)
+![C#](https://img.shields.io/badge/C%23-239120?style=flat-square&logo=csharp&logoColor=white)
 &nbsp;
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=oracle&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+&nbsp;
+![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnubash&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)
-![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+
+<sub>Currently poking at LLM APIs (OpenRouter · Bedrock · Azure) at a simple level, and using AI to level up how I code.</sub>
 
 ---
 
@@ -45,8 +38,8 @@ building things, learning faster, shipping more than last year.
 
 <div align="center">
 
-**A tiny Wordle, but the answer is always a real 5-letter shell command.**
-One puzzle a day, 6 guesses, playable **right here on my profile.**
+**A tiny Wordle where the answer is always a real 5-letter shell command.**
+One puzzle a day, 6 guesses, playable right here on my profile.
 
 ```
   P  A  S  T  E   ⬛🟨⬛⬛🟩
@@ -61,11 +54,7 @@ One puzzle a day, 6 guesses, playable **right here on my profile.**
 
 </div>
 
-> **How it works** — Clicking **Play** opens a pre-filled issue. Change the
-> `XXXXX` in the title to your 5-letter guess and submit it. A GitHub Action
-> (Python) scores it, replies with your board, and closes the issue. Your
-> progress is saved per player and resets every day. Green = right spot,
-> yellow = wrong spot, grey = not in the command.
+> Click **Play**, change the `XXXXX` in the issue title to your guess and submit — a GitHub Action scores it and replies. Green = right spot, yellow = wrong spot, grey = not in the command.
 
 <!-- LEADERBOARD:START -->
 **Today's solvers**
@@ -75,24 +64,11 @@ _Nobody has cracked today's command yet. Be the first?_
 
 ---
 
-## `$ cat ~/focus.txt`
-
-```console
-jordi@github:~$ cat focus.txt
-> Backend services & API design
-> DevOps / IaC & CI-CD automation
-> Cloud security & systems administration
-> CLI tooling and developer experience
-
-jordi@github:~$ echo $STATUS
-building backend & infra at work — a few side projects below.
-```
-
 ## `$ ls ~/projects`
 
 | project | what it is |
 |---------|------------|
-| **[health-system-tool](https://github.com/JordiMartinezPl/health-system-tool)** | Bash + Docker system-monitoring & security-auditing tool for Linux — real-time diagnostics, flicker-free atomic rendering, forensic logging under load and SSH session tracking. |
+| **[health-system-tool](https://github.com/JordiMartinezPl/health-system-tool)** | Bash + Docker system-monitoring tool for Linux — real-time diagnostics, flicker-free atomic rendering, logging under load and SSH session tracking. |
 | **[Order Management System](https://github.com/JordiMartinezPl/Microservices-Architecture-Order-Management-System)** | Microservices in **Java + Docker** with **SAGA** orchestration across customers / products / orders / delivery — compensating transactions and fault tolerance. |
 | **[Eternal Agony](https://zad-826.itch.io/eternal-agony)** | Medieval grimdark FPS — fight hordes of undead with a soul-charged bow and soul-economy resource management. Made with a game team. |
 
@@ -101,7 +77,6 @@ building backend & infra at work — a few side projects below.
 <div align="center">
 
 ![Jordi's GitHub stats](https://github-readme-stats.vercel.app/api?username=JordiMartinezPl&show_icons=true&hide_border=true&theme=dark&icon_color=2ECC71&title_color=2ECC71)
-![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=JordiMartinezPl&layout=compact&hide_border=true&theme=dark&title_color=2ECC71)
 
 </div>
 
