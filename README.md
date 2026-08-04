@@ -34,33 +34,16 @@ Backend-leaning. I like understanding how things work under the hood.
 
 ---
 
-## `$ ./cmdle` — guess the daily terminal command
+## `$ ./cmdle` — a little game I built
 
 <div align="center">
 
 **A tiny Wordle where the answer is always a real 5-letter shell command.**
-One puzzle a day, 6 guesses, playable right here on my profile.
+Type, get instant feedback, 6 tries, a fresh command every day.
 
-```
-  P  A  S  T  E   ⬛🟨⬛⬛🟩
-  S  H  R  E  D   ⬛⬛⬛⬛⬛
-  M  O  U  N  T   🟩🟩🟩🟩🟩
-  ·  ·  ·  ·  ·   ⬜⬜⬜⬜⬜
-  ·  ·  ·  ·  ·   ⬜⬜⬜⬜⬜
-  ·  ·  ·  ·  ·   ⬜⬜⬜⬜⬜
-```
-
-[![Play CMDLE](https://img.shields.io/badge/PLAY%20TODAY'S%20COMMAND-238636?style=for-the-badge&logo=gnometerminal&logoColor=white)](https://github.com/JordiMartinezPl/JordiMartinezPl/issues/new?title=CMDLE+XXXXX&body=Replace+the+%2A%2AXXXXX%2A%2A+in+the+title+above+with+your+5-letter+guess+and+hit+%2A%2ASubmit+new+issue%2A%2A.%0A%0AYou+don%27t+need+to+write+anything+down+here.&labels=cmdle)
+[![Play CMDLE](https://img.shields.io/badge/PLAY%20CMDLE-238636?style=for-the-badge&logo=gnometerminal&logoColor=white)](https://jordimartinezpl.github.io/JordiMartinezPl/)
 
 </div>
-
-> Click **Play**, change the `XXXXX` in the issue title to your guess and submit — a GitHub Action scores it and replies. Green = right spot, yellow = wrong spot, grey = not in the command.
-
-<!-- LEADERBOARD:START -->
-**Today's solvers**
-
-_Nobody has cracked today's command yet. Be the first?_
-<!-- LEADERBOARD:END -->
 
 ---
 
@@ -71,14 +54,6 @@ _Nobody has cracked today's command yet. Be the first?_
 | **[health-system-tool](https://github.com/JordiMartinezPl/health-system-tool)** | Bash + Docker system-monitoring tool for Linux — real-time diagnostics, flicker-free atomic rendering, logging under load and SSH session tracking. |
 | **[Order Management System](https://github.com/JordiMartinezPl/Microservices-Architecture-Order-Management-System)** | Microservices in **Java + Docker** with **SAGA** orchestration across customers / products / orders / delivery — compensating transactions and fault tolerance. |
 | **[Eternal Agony](https://zad-826.itch.io/eternal-agony)** | Medieval grimdark FPS — fight hordes of undead with a soul-charged bow and soul-economy resource management. Made with a game team. |
-
-## `$ cat ~/stats`
-
-<div align="center">
-
-![Jordi's GitHub stats](https://github-readme-stats.vercel.app/api?username=JordiMartinezPl&show_icons=true&hide_border=true&theme=dark&icon_color=2ECC71&title_color=2ECC71)
-
-</div>
 
 ## `$ cat ~/contact.txt`
 
