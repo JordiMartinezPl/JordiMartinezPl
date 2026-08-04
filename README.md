@@ -8,12 +8,17 @@
 
 ```console
 jordi@github:~$ whoami
-> Jordi Martínez Planas — Software Engineer
+> Jordi Martínez Planas — backend-leaning software engineer
 
-jordi@github:~$ cat about.txt
-Double degree in Software Engineering + Video Games @ TecnoCampus (UPF).
-Backend-leaning. I like understanding how things work under the hood,
-and I'm always ready to learn more.
+jordi@github:~$ ps -u jordi
+  PID  STATE  COMMAND
+ 1001  R      double degree: Software Engineering + Video Games @ TecnoCampus (UPF)
+ 1002  R      building backends
+ 1003  R      digging into how things work under the hood
+ 1004  R      learning something new   [always running]
+
+jordi@github:~$ sudo make me a senior dev
+> nice try. keep shipping.
 ```
 
 ---
