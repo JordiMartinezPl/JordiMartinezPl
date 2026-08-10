@@ -1,8 +1,3 @@
-<div align="center">
-
-[![typing](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1200&color=2ECC71&center=true&vCenter=true&width=560&lines=Backend-leaning+developer;Java%2C+Python%2C+C%23;Software+Engineering+%2B+Video+Games;Digging+under+the+hood)](https://github.com/JordiMartinezPl)
-
-</div>
 
 ## `$ whoami`
 
